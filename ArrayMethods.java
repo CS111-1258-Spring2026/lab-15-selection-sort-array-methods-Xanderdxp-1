@@ -30,34 +30,62 @@ ArrayMethods
 
 public class ArrayMethods
 {
-  /**DESCRIPTION: */
+  /** Convert array to a readable string */
   public static String arrayString(int[] a)
   {
-    return ""; //STUB to keep compiler happy
+    String result = "{ ";
+
+    for (int i = 0; i < a.length; i++) {
+      result += a[i];
+      if (i < a.length - 1) {
+        result += ", ";
+      }
+    }
+
+    return result + " }";
   }
   
-  /**DESCRIPTION: */
+  /**: Swap two elements in an array */
   public static void swap(int[] array, int a, int b)
   {
-  
+    int temp = array[a];
+    array[a] = array[b];
+    array[b] = temp;
   }
-	
-	/**DESCRIPTION: */
+    
+  /** Return index of minimum value starting at startIndex */
   public static int indexOfMin(int[] array, int startIndex)
   {
-    return 0; //STUB to keep compiler happy
+    int minIndex = startIndex;
+
+    for (int i = startIndex + 1; i < array.length; i++) {
+      if (array[i] < array[minIndex]) {
+        minIndex = i;
+      }
+    }
+
+    return minIndex;
   }
 
-	/**DESCRIPTION: */
+  /** Reverse array using swap() */
   public static void reverse(int[] array)
   {
+    int left = 0;
+    int right = array.length - 1;
 
+    while (left < right) {
+      swap(array, left, right);
+      left++;
+      right--;
+    }
   }
 
-	/**DESCRIPTION: */
+  /** Selection Sort using indexOfMin() and swap() */
   public static void selectionSort(int[] array)
   {
-
+    for (int i = 0; i < array.length - 1; i++) {
+      int minIndex = indexOfMin(array, i);
+      swap(array, i, minIndex);
+    } 
   }
-
 }
